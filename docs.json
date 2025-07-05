@@ -2,10 +2,6 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "willow",
   "name": "Franko",
-  "colors": {
-    "light": "#E4F222",
-    "dark": "#173320"
-  },
   "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
