@@ -50,7 +50,7 @@ Here are some common ways to trigger the modal:
 | Open from a navbar link | `<a href="#" onclick="FrankoModal.open()">Chat</a>` |
 | One page, two modals | Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')` |
 
-```js title="Trigger when user scrolls 50%"
+```js
 window.addEventListener('scroll', () => {
   if (window.scrollY > document.body.scrollHeight * 0.5) {
     FrankoModal.open();
