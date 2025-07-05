@@ -17,7 +17,8 @@
             "group": "Get Started",
             "pages": [
               "identity-verification",
-              "embed"
+              "chat-bubble",
+              "custom-trigger"
             ]
           }
         ]
