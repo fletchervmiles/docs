@@ -41,19 +41,14 @@ You can fire this from on-click handlers, JS events, or your SPA router.
 
 ---
 
-## 4 · Example patterns
+## Example patterns
 
 Here are some common ways to trigger the modal:
 
-| Use-case | How |
-|----------|-----|
-| Open from a navbar link | `<a href="#" onclick="FrankoModal.open()">Chat</a>` |
-| One page, two modals | Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')` |
+**Examples**
 
-+**Examples**
-+
-+- **Open from a navbar link**: `<a href="#" onclick="FrankoModal.open()">Chat</a>`
-+- **Multiple modals**: Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')`
+- **Open from a navbar link**: `<a href="#" onclick="FrankoModal.open()">Chat</a>`
+- **Multiple modals**: Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')`
 
 ```js
 window.addEventListener('scroll', () => {
@@ -65,7 +60,7 @@ window.addEventListener('scroll', () => {
 
 ---
 
-## 5 · FAQ
+## FAQ
 
 **Can I conditionally load the script?** Yes – render it only when the user meets your criteria (logged in, on a certain page, etc.).
 
