@@ -45,6 +45,11 @@ You can fire this from on-click handlers, JS events, or your SPA router.
 
 Here are some common ways to trigger the modal:
 
+| Use-case | How |
+|----------|-----|
+| Open from a navbar link | `<a href="#" onclick="FrankoModal.open()">Chat</a>` |
+| One page, two modals | Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')` |
+
 **Examples**
 
 - **Open from a navbar link**: `<a href="#" onclick="FrankoModal.open()">Chat</a>`
