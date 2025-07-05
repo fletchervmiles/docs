@@ -3,9 +3,8 @@
   "theme": "willow",
   "name": "Franko",
   "colors": {
-    "primary": "#E4F222",
-    "light": "#173320",
-    "dark": "#E4F222"
+    "light": "#E4F222",
+    "dark": "#173320"
   },
   "favicon": "/favicon.ico",
   "navigation": {
