@@ -31,30 +31,45 @@ Any element can open the modal:
 <button onclick="FrankoModal.open()">Give Feedback</button>
 ```
 
-**Multiple modals?** Pass a slug:
+**Want to identify users?** Add the identity snippet before your trigger script. [Learn more →](../identity-verification)
 
-```js
-FrankoModal.open("bug-report");
+---
+
+## Multiple modals
+
+You can have different modals for different purposes (e.g., feedback, bug reports, feature requests).
+
+**Option 1: Install multiple snippets**
+```html
+<!-- First modal -->
+<script data-modal-slug="feedback-12345">...</script>
+
+<!-- Second modal -->
+<script data-modal-slug="bugs-67890">...</script>
 ```
 
-You can fire this from on-click handlers, JS events, or your SPA router.
+**Option 2: Open specific modals programmatically**
+```js
+// Opens the default modal from the first script
+FrankoModal.open();
+
+// Opens a specific modal by slug
+FrankoModal.open("feedback-12345");
+FrankoModal.open("bugs-67890");
+```
 
 ---
 
 ## Example patterns
 
-Here are some common ways to trigger the modal:
+| Use case | Implementation |
+|----------|----------------|
+| **Navbar feedback link** | `<a href="#" onclick="FrankoModal.open(); return false;">Feedback</a>` |
+| **After form submission** | `onSubmit={() => { submitForm(); FrankoModal.open(); }}` |
+| **Scroll-triggered** | See code example below |
+| **Error boundary** | `catch(e) { FrankoModal.open("bug-report-12345"); }` |
 
-| Use-case | How |
-|----------|-----|
-| Open from a navbar link | `<a href="#" onclick="FrankoModal.open()">Chat</a>` |
-| One page, two modals | Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')` |
-
-**Examples**
-
-- **Open from a navbar link**: `<a href="#" onclick="FrankoModal.open()">Chat</a>`
-- **Multiple modals**: Install two snippets with different `data-modal-slug` values and call `FrankoModal.open('other-slug')`
-
+**Scroll trigger example:**
 ```js
 window.addEventListener('scroll', () => {
   if (window.scrollY > document.body.scrollHeight * 0.5) {
@@ -65,12 +80,29 @@ window.addEventListener('scroll', () => {
 
 ---
 
+## Conditional loading
+
+You can control when the script loads:
+
+```js
+// Only load for logged-in users
+if (user.isAuthenticated) {
+  const script = document.createElement('script');
+  script.src = 'your-franko-snippet-url';
+  document.body.appendChild(script);
+}
+```
+
+This is just standard JavaScript – wrap the script in whatever logic makes sense for your use case.
+
+---
+
 ## FAQ
 
-**Can I conditionally load the script?** Yes – render it only when the user meets your criteria (logged in, on a certain page, etc.).
-
-**Will unused scripts hurt performance?** No – each script is less than 5 kB and loads async.
+**Will unused scripts hurt performance?** No – each script is less than 5kb and loads async.
 
 **Does the script inject a bubble?** No. Manual mode stays invisible until you call `FrankoModal.open()`.
 
-Need more? Email **fletcher@franko.ai**. 
+**Can I trigger it from my React/Vue app?** Yes – `FrankoModal.open()` works anywhere once the script loads.
+
+Need help? Email **fletcher@franko.ai** 
