@@ -1,7 +1,7 @@
-# Link Feedback to Logged-in Users (Identity Verification)
 
-With identity verification you can see *who* said what in your Franko dashboard. It does **not** change the visitor's experience – the modal looks identical whether the user is verified or anonymous.
+Identity verification allows you to associate signed-in users with individual feedback responses. In the responses, you will be able to view their name and email. If the snippet is missing, the users appear as "Anonymous".
 
+Note, this does not change the visitor's experience. The modal and chat functionality is the same for both verified and anonymous users. 
 ---
 
 ## How it works
@@ -22,11 +22,11 @@ window.FrankoUser = {
 ```
 
 > **⚠️ IMPORTANT: Script Order Matters**
-> 
+>
 > The `window.FrankoUser` identity snippet must be executed **before** the main Franko embed script loads, otherwise user data will be missed.
-> 
+>
 > **Reliable Pattern**: Place the identity information in the same script tag as your Franko loader to guarantee correct order:
-> 
+>
 > ```html
 > <script>
 > (function() {
@@ -35,7 +35,7 @@ window.FrankoUser = {
 >     user_id: "user-123",
 >     user_metadata: { name: "Ada Lovelace", email: "ada@example.com" }
 >   };
-> 
+>
 >   // 2. Then load Franko embed script
 >   if (!window.FrankoModal) {
 >     window.FrankoModal = (...a) => { /* ...Franko loader code... */ };
