@@ -18,7 +18,8 @@
             "pages": [
               "identity-verification",
               "chat-bubble",
-              "custom-trigger"
+              "custom-trigger",
+              "shareable-links"
             ]
           }
         ]

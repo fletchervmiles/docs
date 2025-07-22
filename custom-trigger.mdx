@@ -35,33 +35,11 @@ Any element can open the modal:
 
 ---
 
-## Using a Shareable Link
-
-In addition to embedding a modal on your site, every Franko modal is also available as a standalone, shareable webpage. This is perfect for use cases where you can't embed a script, such as in an email, a Slack message, or a support ticket.
-
-To get the link, simply use the following URL structure:
-
-```
-https://franko.ai/embed/YOUR_MODAL_SLUG
-```
-
-**Common use cases:**
-- Email signatures: "Have feedback? [Click here](https://franko.ai/embed/feedback-12345)"
-- Support tickets: Send customers a direct link to report bugs
-- Social media: Share feedback forms on Twitter, LinkedIn, etc.
-- Documentation: Link to feedback forms in GitHub READMEs or wikis
-
-> **Note**: When using a shareable link, identity verification via the `window.FrankoUser` snippet is not possible, as the modal opens in a new tab without access to your website's session.
-
----
-
 ## Multiple modals
 
 The Franko script is designed to manage one active modal configuration per page. **Installing multiple Franko snippets on the same page will cause conflicts** – only the last-loaded modal will work correctly.
 
-To use different modals across your site, follow one of these recommended patterns:
-
-**Pattern 1: One Modal Per Page (Recommended)**
+**Recommended approach: One Modal Per Page**
 
 Place different modal snippets on different pages or sections of your site:
 
@@ -78,32 +56,9 @@ Place different modal snippets on different pages or sections of your site:
 
 Since each script is on a separate page, they will never conflict.
 
-**Pattern 2: Dynamic Modal Switching (SPAs)**
+**For Single-Page Applications (SPAs)**: Consider using conditional loading patterns (see [Conditional loading](#conditional-loading) section below) to load different modal scripts based on route or component state.
 
-For Single-Page Applications where you need different modals without page reloads:
-
-```js
-// Load one base Franko script, then switch modal content dynamically
-async function openModal(slug) {
-  const frankoIframe = document.querySelector('iframe[src*="/embed/"]');
-  if (!frankoIframe) return;
-
-  const newSrc = `https://franko.ai/embed/${slug}?mode=modal`;
-  
-  if (frankoIframe.src !== newSrc) {
-    frankoIframe.src = newSrc;
-    frankoIframe.onload = () => FrankoModal.open();
-  } else {
-    FrankoModal.open();
-  }
-}
-
-// Usage
-openModal("feedback-12345");  // Switch to feedback modal
-openModal("bugs-67890");      // Switch to bug report modal
-```
-
-This avoids script conflicts by reusing the same Franko instance.
+**Alternative**: For situations where you can't embed scripts, consider using [Shareable Links](./shareable-links) which work as standalone webpages.
 
 ---
 
@@ -336,10 +291,10 @@ script.onerror = () => {
 
 **Can I trigger it from my React/Vue app?** Yes – `FrankoModal.open()` works anywhere once the script loads.
 
-**Why do all my buttons open the same modal?** Multiple Franko snippets are conflicting. Only use one snippet per page. See the "Multiple modals" section above for proper patterns, or [troubleshooting in Chat Bubbles →](./chat-bubble#troubleshooting) for additional guidance.
+**Why do all my buttons open the same modal?** Multiple Franko snippets are conflicting. Only use one snippet per page. See the "Multiple modals" section above for the one-per-page approach, or consider [Shareable Links](./shareable-links) for situations where embedding isn't possible.
 
 **What's the difference between manual and bubble mode?** Manual mode is for custom triggers - the modal stays completely invisible until you call `FrankoModal.open()`. Bubble mode automatically injects a visible, floating chat bubble on your page.
 
-**Can I switch modals by removing the old script tag and adding a new one?** This is not recommended and can be unreliable. Franko's API (`window.FrankoModal`) is created only once per page. Even if you remove the script tag, the original modal's configuration may persist in memory. For SPAs, use the recommended iframe source-swapping pattern described in the "Multiple modals" section.
+**Can I switch modals by removing the old script tag and adding a new one?** This is not recommended and can be unreliable. Franko's API (`window.FrankoModal`) is created only once per page. Even if you remove the script tag, the original modal's configuration may persist in memory. For SPAs, use the one-per-page approach described in the "Multiple modals" section or consider [Shareable Links](./shareable-links) for different use cases.
 
 Need help? Email **fletcher@franko.ai** 
