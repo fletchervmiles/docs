@@ -24,10 +24,13 @@ window.FrankoUser = {
 
 > **⚠️ IMPORTANT: Script Order Matters**<br/>
 >
+>
 > The `window.FrankoUser` identity snippet must be executed **before** the main Franko embed script loads, otherwise user data will be missed.<br/>
 >
+>
 > **Reliable Pattern**: Place the identity information in the same script tag as your Franko loader to guarantee correct order:
-> 
+>
+>
 > ```html
 > <script>
 > (function() {
