@@ -16,10 +16,10 @@
           {
             "group": "Get Started",
             "pages": [
-              "identity-verification",
               "chat-bubble",
               "custom-trigger",
-              "shareable-links"
+              "shareable-links",
+              "identity-verification"
             ]
           }
         ]
