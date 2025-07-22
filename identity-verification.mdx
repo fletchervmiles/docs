@@ -22,14 +22,9 @@ window.FrankoUser = {
 </script>
 ```
 
-> **⚠️ IMPORTANT: Script Order Matters**<br/>
->
->
-> The `window.FrankoUser` identity snippet must be executed **before** the main Franko embed script loads, otherwise user data will be missed.<br/>
->
->
+> **⚠️ IMPORTANT: Script Order Matters**<br/>&nbsp;<br/>
+> The `window.FrankoUser` identity snippet must be executed **before** the main Franko embed script loads, otherwise user data will be missed.<br/>&nbsp;<br/>
 > **Reliable Pattern**: Place the identity information in the same script tag as your Franko loader to guarantee correct order:
->
 >
 > ```html
 > <script>
@@ -39,7 +34,7 @@ window.FrankoUser = {
 >     user_id: "user-123",
 >     user_metadata: { name: "Ada Lovelace", email: "ada@example.com" }
 >   };
-> 
+>
 >   // 2. Then load Franko embed script
 >   if (!window.FrankoModal) {
 >     window.FrankoModal = (...a) => { /* ...Franko loader code... */ };
