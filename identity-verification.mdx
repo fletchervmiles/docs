@@ -1,7 +1,8 @@
 
 Identity verification allows you to associate signed-in users with individual feedback responses. In the responses, you will be able to view their name and email. If the snippet is missing, the users appear as "Anonymous".
 
-Note, this does not change the visitor's experience. The modal and chat functionality is the same for both verified and anonymous users. 
+> Note, this does not change the visitor's experience. The modal and chat functionality is the same for both verified and anonymous users.
+
 ---
 
 ## How it works
@@ -22,11 +23,11 @@ window.FrankoUser = {
 ```
 
 > **⚠️ IMPORTANT: Script Order Matters**
->
+> 
 > The `window.FrankoUser` identity snippet must be executed **before** the main Franko embed script loads, otherwise user data will be missed.
->
+> 
 > **Reliable Pattern**: Place the identity information in the same script tag as your Franko loader to guarantee correct order:
->
+> 
 > ```html
 > <script>
 > (function() {
@@ -35,7 +36,7 @@ window.FrankoUser = {
 >     user_id: "user-123",
 >     user_metadata: { name: "Ada Lovelace", email: "ada@example.com" }
 >   };
->
+> 
 >   // 2. Then load Franko embed script
 >   if (!window.FrankoModal) {
 >     window.FrankoModal = (...a) => { /* ...Franko loader code... */ };
@@ -58,12 +59,14 @@ That's it! Franko will now associate feedback with this user.
 
 ## Common patterns
 
-- **Show user info only when logged in:** Wrap the snippet in your auth check
-- **Different user data per page:** Update `window.FrankoUser` dynamically
+| Pattern | Implementation |
+|---------|----------------|
+| Show user info only when logged in | Wrap the snippet in your auth check |
+| Different user data per page | Update `window.FrankoUser` dynamically |
 
 **Compatible with all embedding methods**:
 
-This identity pattern works with both [Chat Bubbles](./chat-bubble) and [Custom Triggers](./custom-trigger).
+This identity pattern works with both [Chat Bubbles](./chat-bubble) and [Custom Triggers](./custom-trigger). Not compatible with [Shareable Links](./shareable-links), but you can configure to ask for name and email on the "Connect" tab.
 
 ---
 
