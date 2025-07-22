@@ -12,14 +12,38 @@ Add this snippet **before** your Franko embed script:
 <script>
 // Replace the placeholder values with your own user data
 window.FrankoUser = {
-  user_id: CURRENT_USER_ID, // e.g. user.id, usually coming from your auth provider
+  user_id: YOUR_CURRENT_USER_ID, // e.g. user.id, usually from your auth provider
   user_metadata: {
-    name: CURRENT_USER_NAME,   // optional
-    email: CURRENT_USER_EMAIL  // optional
+    name: YOUR_CURRENT_USER_NAME,   // optional
+    email: YOUR_CURRENT_USER_EMAIL  // optional
   }
 }
 </script>
 ```
+
+> **⚠️ IMPORTANT: Script Order Matters**
+> 
+> The `window.FrankoUser` identity snippet must be executed **before** the main Franko embed script loads, otherwise user data will be missed.
+> 
+> **Reliable Pattern**: Place the identity information in the same script tag as your Franko loader to guarantee correct order:
+> 
+> ```html
+> <script>
+> (function() {
+>   // 1. Set user identity first
+>   window.FrankoUser = {
+>     user_id: "user-123",
+>     user_metadata: { name: "Ada Lovelace", email: "ada@example.com" }
+>   };
+> 
+>   // 2. Then load Franko embed script
+>   if (!window.FrankoModal) {
+>     window.FrankoModal = (...a) => { /* ...Franko loader code... */ };
+>     // ...rest of your Franko embed code...
+>   }
+> })();
+> </script>
+> ```
 
 That's it! Franko will now associate feedback with this user.
 
@@ -38,6 +62,8 @@ That's it! Franko will now associate feedback with this user.
 |----------|----------------|
 | Show user info only when logged in | Wrap the snippet in your auth check |
 | Different user data per page | Update `window.FrankoUser` dynamically |
+
+**Compatible with all embedding methods**: This identity pattern works with both [Chat Bubbles](./chat-bubble) and [Custom Triggers](./custom-trigger).
 
 ---
 
